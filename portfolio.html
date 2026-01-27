@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SANTHOSH MANOGARAN</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+    }
+
+    /* Navigation */
+    nav {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      animation: slideIn 0.8s ease-out;
+    }
+
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      animation: slideIn 0.8s ease-out 0.2s both;
+    }
+
+    .hero .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: slideIn 0.8s ease-out 0.4s both;
+    }
+
+    .btn {
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background-color: #fff;
+      color: #667eea;
+      font-weight: bold;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background-color: white;
+      color: #667eea;
+      transform: translateY(-2px);
+    }
+
+    /* About Section */
+    .about {
+      padding: 4rem 2rem;
+      background: white;
+    }
+
+    .about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #667eea;
+    }
+
+    .about .content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .profile-image {
+      text-align: center;
+    }
+
+    /* FIX: width 413% removed */
+    .profile-image img {
+      width: 100%;
+      max-width: 350px;
+      height: 430px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 5px solid #667eea;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    /* FIX: missing semicolon */
+    .profile-image img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+    }
+
+    .profile-image-placeholder {
+      width: 100%;
+      max-width: 350px;
+      height: 350px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border: 5px solid #667eea;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+
+    /* FIX: hover selector typo */
+    .profile-image-placeholder:hover {
+      transform: scale(1.05);
+    }
+
+    .profile-image-placeholder i {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .about p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    /* Resume button (moved from body style tag into head) */
+    .resume-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      transition: all 0.3s ease;
+      border: none;
+    }
+
+    .resume-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    }
+
+    #Resume {
+      background: #f9f9f9;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    /* Skills */
+    .skills {
+      padding: 4rem 2rem;
+      background: #f9f9f9;
+    }
+
+    .skills h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #667eea;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .skill-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .skill-card h3 {
+      color: #667eea;
+      margin-bottom: 1rem;
+    }
+
+    /* FIX: missing semicolon */
+    .skill-card ul {
+      list-style: none;
+      text-align: left;
+    }
+
+    .skill-card li {
+      padding: 0.3rem 0;
+    }
+
+    /* Projects */
+    .projects {
+      padding: 4rem 2rem;
+      background: white;
+    }
+
+    .projects h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #667eea;
+    }
+
+    /* FIX: display grid semicolon + missing ; after display:flex in children */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: #f9f9f9;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+
+    .project-content {
+      padding: 1.5rem;
+    }
+
+    .project-content h3 {
+      color: #667eea;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-content p {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-links a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .project-links a:hover {
+      color: #764ba2;
+    }
+
+    /* Experience */
+    .experience {
+      padding: 4rem 2rem;
+      background: #f9f9f9;
+    }
+
+    .experience h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #667eea;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline-item {
+      margin-bottom: 2rem;
+      padding-left: 2rem;
+      border-left: 2px solid #667eea;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -8px;
+      top: 0;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #667eea;
+    }
+
+    .timeline-item h3 {
+      color: #667eea;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-item .date {
+      color: #999;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    /* Contact */
+    .contact {
+      padding: 4rem 2rem;
+      background: white;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #667eea;
+    }
+
+    .contact-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact p {
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .social-links a {
+      width: 50px;
+      height: 50px;
+      background: #667eea;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .social-links a:hover {
+      background: #764ba2;
+      transform: scale(1.1);
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        gap: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .about .content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .profile-image img,
+      .profile-image-placeholder {
+        max-width: 280px;
+        height: 280px;
+        margin: 0 auto;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .social-links {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo"><strong>Portfolio</strong></div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#Resume">Resume</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Hi welcome to My Portfolio</h2>
+    <h1>I'am Santhosh Manogaran</h1>
+    <p><strong>Junior network developer | Cyber security enthusiast</strong></p>
+    
+    <div class="cta-buttons">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <div class="content">
+        <div class="profile-image">
+          <img
+            src="d:\certificates\mobile\photos\image-5.png"
+            alt="Santhosh Manogaran"
+          />
+        </div>
+
+        <div>
+          <p>
+            Hello! I'm <strong>Santhosh Manogaran</strong>, a 21-year-old final-year B.E.
+            Computer Science student at TCET College near Vandavasi, Tamil Nadu.
+          </p>
+          <p>
+            Networking and Cybersecurity professional with practical experience in LAN setup,
+            IP and router configuration, switching, firewalls, and IDS/IPS. Skilled in
+            real-time network troubleshooting, security best practices, and hands-on
+            management of 500+ computers and networking devices.
+          </p>
+          <p>
+            I'm passionate about building secure network infrastructures and staying updated
+            with the latest cybersecurity trends. Let's connect to discuss exciting
+            opportunities!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume -->
+  <section id="Resume">
+    <a
+      href="https://drive.google.com/file/d/1m9IUvo4Y56Q_P_tMnOykGCSAbScsKpR7/view?usp=drive_link"
+      class="resume-btn"
+      target="_blank"
+      rel="noopener"
+    >
+      📄 View / Download Resume PDF
+    </a>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="skills">
+    <div class="container">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Programming</h3>
+          <ul>
+            <li>Python</li>
+            <li>JavaScript</li>
+            <li>Bash/Linux Shell</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <h3>Networking Tools</h3>
+          <ul>
+            <li>Wireshark</li>
+            <li>Packet Tracer</li>
+            <li>Nmap</li>
+            <li>Aircrack-ng</li>
+            <li>PRTG</li>
+            <li>Snort</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Certifications</h3>
+          <ul>
+            <li>Networking(Cisco)</li>
+            <li>Cybersecurity(EC-Council)</li>
+            <li>Hardware(EC-Council)</li>
+            <li>Cloud Computing(IBM)</li>
+            <li>Linux(EC-Council)</li>
+            <li>Python(Coursera)</li>
+            <li>JavaScript(EC-Council)</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <h3>Platforms</h3>
+          <ul>
+            <li>Linux</li>
+            <li>Windows</li>
+            <li>Ubuntu</li>
+            <li>Virtual Machines</li>
+            <li>Git & GitHub</li>
+            <li>VM Migration</li>
+          </ul>
+        </div>
+
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2>Featured Projects</h2>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-image">IDS/IPS System</div>
+          <div class="project-content">
+            <h3>IDS and IPS System</h3>
+            <p>
+              Real-time intrusion detection and prevention system with EDR capabilities for
+              enhanced network security.
+            </p>
+            <div class="project-links">
+              <a href="#">Demo</a>
+              <a href="#">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-image">Tech_net.ai</div>
+          <div class="project-content">
+            <h3>Tech_net.ai</h3>
+            <p>
+              Cybersecurity & networking AI assistant providing insights on security tools and
+              best practices.
+            </p>
+            <div class="project-links">
+              <a href="#">Demo</a>
+              <a href="#">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="experience">
+    <div class="container">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>College Network monitor</h3>
+          <p>TCET College</p>
+          <div class="date">2023 - Present</div>
+          <p>Experienced in assembling and maintaining a 500+ computer lab environment, including LAN setup and structured network configuration. Skilled in router and switch configuration, operating system installation and support on both Linux and Windows, and end-to-end software deployment. Strong troubleshooting ability with hands-on experience in problem analysis, fault isolation, and resolving hardware/software/network issues. Familiar with implementing basic cybersecurity measures to strengthen system and network security.</p>
+        </div>
+
+        <div class="timeline-item">
+          <h3>Tech_Net.ai</h3>
+          <p>ai development project</p>
+          <div class="date">2025 - Present</div>
+          <p>Python developer working on Tech_Net.ai, a generative AI product for networking and cybersecurity. Experienced with IDS/IPS-based threat detection and malware identification (trojans/viruses), and building AI workflows to solve large-scale security/networking issues.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Get In Touch</h2>
+      <div class="contact-content">
+        <p>Ready to discuss networking projects and cybersecurity opportunities!</p>
+
+        <div class="social-links">
+          <a href="mailto:manogarchithra143@gmail.com" title="Email">✉️</a>
+          <a href="https://in.linkedin.com/in/santhosh-m-6265b823a" target="_blank" rel="noopener" title="LinkedIn">in</a>
+          <a href="https://github.com/gueudhjdjs" target="_blank" rel="noopener" title="GitHub">⚙️</a>
+          <a href="tel:+918610446418" title="Phone">📞</a>
+        </div>
+
+        <a href="mailto:manogarchithra143@gmail.com" class="btn btn-primary">Send Email</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Santhosh Manogaran. All rights reserved.</p>
+  </footer>
+</body>
+</html>
